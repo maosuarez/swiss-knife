@@ -16,7 +16,8 @@ Write-Host "==> Instalando binarios via conda-forge (ffmpeg, pandoc)..." -Foregr
 & $CONDA install -n $ENV_NAME -c conda-forge ffmpeg pandoc -y
 
 Write-Host "==> Instalando dependencias Python y registrando knife..." -ForegroundColor Cyan
-& $CONDA run -n $ENV_NAME pip install -e .
+$pip = Join-Path $env:USERPROFILE "miniconda3\envs\$ENV_NAME\Scripts\pip.exe"
+& $pip install -e $PSScriptRoot\..
 
 $scriptsPath = Join-Path $env:USERPROFILE "miniconda3\envs\$ENV_NAME\Scripts"
 

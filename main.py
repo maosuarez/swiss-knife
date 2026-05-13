@@ -29,6 +29,12 @@ import argparse
 import importlib
 from pathlib import Path
 
+# Windows cp1252 no puede encodear box-drawing ni emoji — forzar UTF-8
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 # ─── Registro de herramientas ─────────────────────────────────────────────────
 # Añade aquí cada nueva herramienta: "nombre": ("modulo", "descripcion")
 TOOLS: dict[str, tuple[str, str]] = {
