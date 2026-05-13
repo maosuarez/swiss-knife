@@ -26,9 +26,9 @@ CLI modular tipo "navaja suiza" para Windows nativo. Centraliza herramientas de 
 swiss-knife/
 ├── main.py              # Dispatcher central — registra y despacha herramientas
 ├── pyproject.toml       # Definición de proyecto y punto de entrada CLI (knife)
-├── setup.ps1            # Instalador Windows: conda env, Python, alias (PowerShell)
-├── setup.sh             # [Congelado] Instalador WSL/Linux histórico (no mantenido)
-├── requirements.txt     # Dependencias Python (heredado; pyproject.toml es primario)
+├── scripts/
+│   ├── setup.ps1        # Instalador Windows: conda env, binarios, pip install -e .
+│   └── setup.sh         # [Congelado] Instalador WSL/Linux histórico (no mantenido)
 └── tools/
     ├── _template.py     # Plantilla para nuevas herramientas
     ├── transcribe.py    # Audio → texto (Google Speech, chunked)
@@ -44,7 +44,7 @@ swiss-knife/
     └── qr.py            # Generación de códigos QR
 ```
 
-**Punto de entrada CLI:** `pyproject.toml` define `[project.scripts] knife = "main:main"`. Se instala con `pip install -e .` en el conda env `tools-env`. El ejecutable `knife.exe` se coloca en `tools-env\Scripts\` y está disponible globalmente cuando el env está activo. Opcionalmente, agregar `C:\Users\maosu\miniconda3\envs\tools-env\Scripts` al PATH del usuario para usar `knife` sin activar el env.
+**Punto de entrada CLI:** `pyproject.toml` define `[project.scripts] knife = "main:main"`. Se instala con `pip install -e .` en el conda env `tools-env`. El ejecutable `knife.exe` se coloca en `tools-env\Scripts\` y está disponible globalmente cuando el env está activo. Opcionalmente, agregar `C:\Users\maosu\miniconda3\envs\tools-env\Scripts` al PATH del usuario para usar `knife` sin activar el env. El bootstrap completo está en `scripts/setup.ps1`.
 
 **Patrón de extensión:** cada herramienta expone exactamente una función `run()` sin argumentos. Lee sus propios args desde `sys.argv` con `argparse`. El dispatcher en `main.py` reemplaza `sys.argv[0]` antes de delegar.
 
