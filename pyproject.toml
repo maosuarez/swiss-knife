@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "swiss-knife"
+version = "1.0.0"
+requires-python = ">=3.11"
+dependencies = [
+    "rich>=13.0",
+    "Pillow>=10.0.0",
+    "PyPDF2>=3.0.1",
+    "pdf2docx==0.5.8",
+    "pyyaml==6.0.1",
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.3",
+    "qrcode>=7.4.2",
+    "SpeechRecognition>=3.10.0",
+    "pydub>=0.25.1",
+    "rembg>=2.0.50",
+    "docx2pdf>=0.1.8",
+    "pywin32>=306",
+]
+
+[project.scripts]
+knife = "main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tools*"]

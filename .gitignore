@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Packaging / editable install
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Conda
+.conda/
+
+# Herramientas generadas
+*.qr.png
+qr_*.png
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.user
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Codigo review graph (generado localmente)
+.code-review-graph/
+
+# Claude Code configuration (local only)
+.claude/
