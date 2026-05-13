@@ -4,7 +4,7 @@
 Convierte archivos de audio a texto usando Google Speech Recognition.
 Soporta audios largos dividiéndolos automáticamente en chunks.
 
-Formatos soportados:  OGG · MP3 · WAV · FLAC · M4A
+Formatos soportados:  OGG · MP3 · WAV · FLAC · M4A · MP4
 Idiomas:              es-ES (default), en-US, fr-FR, pt-BR, etc.
 
 Ejemplos:
@@ -41,6 +41,7 @@ SUPPORTED_FORMATS = {
     ".wav": "wav",
     ".flac": "flac",
     ".m4a": "mp4",
+    ".mp4": "mp4",
     ".aac": "aac",
 }
 
@@ -125,7 +126,7 @@ def run() -> None:
 
     parser.add_argument(
         "audio",
-        help="Archivo de audio a transcribir (OGG, MP3, WAV, FLAC, M4A)",
+        help="Archivo de audio/video a transcribir (OGG, MP3, WAV, FLAC, M4A, MP4)",
     )
     parser.add_argument(
         "--lang", "-l",
