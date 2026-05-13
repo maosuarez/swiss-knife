@@ -41,7 +41,7 @@ MODELS = {
 
 
 def remove_background(input_path: Path, output_path: Path, model_name: str) -> None:
-    rembg = _require("rembg")
+    rembg = _require("rembg", "rembg[cpu]")
     PIL = _require("PIL", "Pillow")
     Image = PIL.Image
 

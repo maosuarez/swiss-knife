@@ -13,8 +13,9 @@ def _require(package, pip_name=None):
 
 
 def do_something(input_path: Path) -> str:
-    PIL = _require("PIL", "pillow")
-    img = PIL.Image.open(input_path)
+    _require("PIL", "pillow")
+    from PIL import Image
+    img = Image.open(input_path)
 
     exif = img._getexif()
     if not exif:

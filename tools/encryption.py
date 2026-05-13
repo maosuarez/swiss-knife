@@ -1,3 +1,20 @@
+"""
+🔐 crypto — Cifrado y análisis de textos clásicos
+═══════════════════════════════════════════════════════════════
+Cifra, descifra y ataca textos con algoritmos clásicos.
+
+Algoritmos:   caesar · vigenere · base64 · affine · rail · columnar
+Entrada:      archivo de texto o cadena directa
+Salida:       texto en pantalla o --output FILE
+
+Ejemplos:
+    knife crypto mensaje.txt --option caesar:brute
+    knife crypto "HELLO" --option caesar:enc:3
+    knife crypto cifrado.txt --option vigenere:dec:clave
+    knife crypto datos.txt --option base64:enc
+═══════════════════════════════════════════════════════════════
+"""
+
 import sys
 import argparse
 from pathlib import Path
