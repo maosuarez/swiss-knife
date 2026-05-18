@@ -1,0 +1,13 @@
+{
+  "swiss-knife": {
+    "command": "conda",
+    "args": [
+      "run",
+      "-n",
+      "tools-env",
+      "--no-capture-output",
+      "python",
+      "C:/Users/maosu/Programas/swiss-knife/knife_mcp_server.py"
+    ]
+  }
+}
