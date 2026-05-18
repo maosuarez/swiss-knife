@@ -2,7 +2,7 @@
 """
 ╔══════════════════════════════════════════════════════════════╗
 ║                     🔪 Swiss Knife CLI                       ║
-║          Navaja suiza de herramientas para WSL/Linux         ║
+║        Navaja suiza de herramientas para Windows/CLI         ║
 ╚══════════════════════════════════════════════════════════════╝
 
 Uso:
@@ -11,10 +11,10 @@ Uso:
     knife <herramienta> --help
 
 Herramientas disponibles:
-    transcribe      Transcribe audio OGG/MP3/WAV a texto
+    transcribe      Transcribe audio/video a texto (Whisper · timestamps · diarización · MD)
     rembg           Elimina el fondo de una imagen
     cripto	    Cifrar un mensaje
-    convert	    Conversion Documentos
+    transform	    Convertir archivos (media, docs, JSON/YAML/TOML/CSV)
     clip	    Recortar Audio-Video
     find-dup	    Detectar archivos duplicados
     img-info	    Muestra metadata de imagenes
@@ -40,7 +40,7 @@ if hasattr(sys.stderr, "reconfigure"):
 TOOLS: dict[str, tuple[str, str]] = {
     "transcribe": (
         "tools.transcribe",
-        "Transcribe archivos de audio (OGG/MP3/WAV) a texto usando Google Speech",
+        "Transcribe audio/video a texto (Whisper local · timestamps · diarización · export MD)",
     ),
     "rembg": (
         "tools.rembg_tool",
@@ -50,9 +50,9 @@ TOOLS: dict[str, tuple[str, str]] = {
         "tools.encryption",
         "Cifrado, descifrado y ataques (César, Vigenere, Afín, Rail Fence, Columnar, Base64)",
     ),
-    "convert": (
-        "tools.convert",
-        "Conversión de documentos, datos, multimedia e imágenes (batch soportado)",
+    "transform": (
+        "tools.transform",
+        "Conversión de archivos: audio, video, docs, y datos (JSON·YAML·TOML·CSV·batch)",
     ),
     "clip": (
         "tools.clip",
