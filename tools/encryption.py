@@ -1,9 +1,11 @@
 """
-🔐 crypto — Cifrado y análisis de textos clásicos
+🔐 crypto — Cifrado, análisis y codificación de textos
 ═══════════════════════════════════════════════════════════════
-Cifra, descifra y ataca textos con algoritmos clásicos.
+Cifra, descifra, ataca y codifica textos.
 
-Algoritmos:   caesar · vigenere · base64 · affine · rail · columnar
+Cifrados:     caesar · vigenere · base64 · affine · rail · columnar
+Codificación: url · html · jwt
+
 Entrada:      archivo de texto o cadena directa
 Salida:       texto en pantalla o --output FILE
 
@@ -12,6 +14,8 @@ Ejemplos:
     knife crypto "HELLO" --option caesar:enc:3
     knife crypto cifrado.txt --option vigenere:dec:clave
     knife crypto datos.txt --option base64:enc
+    knife crypto "hello world" --option url:enc
+    knife crypto "eyJhbGciOiJ..." --option jwt:dec
 ═══════════════════════════════════════════════════════════════
 """
 
@@ -20,6 +24,8 @@ import argparse
 from pathlib import Path
 import base64
 import string
+import urllib.parse
+import html as html_module
 from itertools import permutations
 
 
@@ -223,6 +229,30 @@ def do_something(input_data, option: str) -> str:
         key = params[0]
         return columnar(text, key, decrypt=(mode == "dec"))
 
+    elif algo == "url":
+        if mode == "enc":
+            return urllib.parse.quote(text, safe="")
+        elif mode == "dec":
+            return urllib.parse.unquote(text)
+
+    elif algo == "html":
+        if mode == "enc":
+            return html_module.escape(text)
+        elif mode == "dec":
+            return html_module.unescape(text)
+
+    elif algo == "jwt":
+        jwt = _require("jwt", "PyJWT")
+        try:
+            header = jwt.get_unverified_header(text)
+            payload = jwt.decode(text, options={"verify_signature": False})
+            return (
+                f"Header:\n{__import__('json').dumps(header, indent=2)}\n\n"
+                f"Payload:\n{__import__('json').dumps(payload, indent=2, default=str)}"
+            )
+        except Exception as e:
+            return f"JWT inválido: {e}"
+
     return "Algoritmo o modo no soportado"
 
 
@@ -276,12 +306,26 @@ Algoritmos soportados:
     enc:<key>
     dec:<key>
 
+  url:
+    enc              → percent-encoding (RFC 3986)
+    dec              → decodificar URL
+
+  html:
+    enc              → escapar entidades HTML (&amp; &lt; &gt;)
+    dec              → desescapar entidades HTML
+
+  jwt:
+    dec              → decodificar JWT sin verificar firma (inspección)
+
 Ejemplos:
   --option caesar:enc:3
   --option caesar:brute
   --option vigenere:dec:clave
   --option vigenere:dict:rockyou.txt
   --option base64:dec
+  --option url:enc
+  --option html:enc
+  --option jwt:dec
 """
     )
 

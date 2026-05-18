@@ -4,38 +4,102 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
+*.py[cod]
+*$py.class
 
 # Packaging / editable install
 *.egg-info/
 dist/
 build/
 *.egg
+wheels/
+pip-wheel-metadata/
 
-# Entornos virtuales
+# Virtual environments
 .venv/
 venv/
 env/
+ENV/
+env.bak/
+venv.bak/
 
 # Conda
 .conda/
 
-# Herramientas generadas
+# Tool-generated outputs
 *.qr.png
 qr_*.png
+*.transcribed.*
+*.converted.*
+*.compressed.*
 
-# IDEs
+# Media files (prevent accidental commits of test/working media)
+*.mp3
+*.wav
+*.flac
+*.m4a
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.webm
+
+# Document files (prevent accidental commits of sensitive or working docs)
+*.docx
+*.xlsx
+*.pptx
+*.pdf
+
+# IDEs and Editors
 .vscode/
 .idea/
 *.suo
 *.user
+*.swp
+*.swo
+*~
+VSCodeCounter.json
 
 # OS
 Thumbs.db
 desktop.ini
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
 
-# Codigo review graph (generado localmente)
+# Linux
+.directory
+
+# Code review graph (locally generated)
 .code-review-graph/
 
 # Claude Code configuration (local only)
 .claude/
+
+# Environment variables and secrets (NEVER commit these)
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+secrets.yaml
+
+# Temporary and backup files
+*.tmp
+*.bak
+*.backup
+*~
+.~*
+
+# IDE cache and lint
+*.cache
+.pylintrc
+.mypy_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+
+# Project artifacts
+/extra-files
